@@ -67,7 +67,7 @@ public:
 /**
 * Observer of audio devices.
 */
-class IAudioDeviceObserver : public RefCountInterface {
+class IAudioDeviceObserver {
 public:
 	virtual ~IAudioDeviceObserver() = default;
 

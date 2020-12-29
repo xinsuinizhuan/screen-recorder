@@ -36,7 +36,7 @@ private:
 template <class T>
 class RefCountedObject : public T {
 public:
-	RefCountedObject(){}
+	RefCountedObject() {}
 	RefCountedObject(RefCountedObject&) = delete;
 	RefCountedObject& operator=(RefCountedObject&) = delete;
 

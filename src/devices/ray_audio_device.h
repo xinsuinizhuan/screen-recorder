@@ -1,5 +1,8 @@
 #pragma once
 
+#include <list>
+#include <mutex>
+
 #include "base\ray_macro.h"
 
 #include "include\iray_audio_device.h"
@@ -14,31 +17,43 @@ using namespace recorder;
 class AudioDeviceCollection :public IAudioDeviceCollection {
 
 private:
-	AudioDeviceCollection();
-	
-	~AudioDeviceCollection();
+	AudioDeviceCollection(std::list<AudioDeviceInfo> devices) : devices_(devices) {}
+
+protected:
+	virtual ~AudioDeviceCollection() {}
+
+public:
+	int getDeviceCount() override { return devices_.size(); }
+
+	virtual AudioDeviceInfo getDeviceInfo(int index) override {
+		if (index >= devices_.size())
+			return empty_device_;
+
+		auto itr = devices_.begin();
+
+		std::advance(itr, index);
+
+		return *itr;
+	};
+
+private:
+	AudioDeviceInfo empty_device_;
+	std::list<AudioDeviceInfo> devices_;
+
+private:
+	friend class AudioDeviceManager;
 
 	DISALLOW_COPY_AND_ASSIGN(AudioDeviceCollection);
 	FRIEND_CLASS_REFCOUNTEDOBJECT(AudioDeviceCollection);
-
-	friend class AudioDeviceManager;
-
-public:
-
-	int getDeviceCount() override;
-
-	virtual AudioDeviceInfo getDeviceInfo(int index) override;
-	
 };
 
 class AudioDeviceManager : public IAudioDeviceManager {
 
 private:
 	AudioDeviceManager();
-	~AudioDeviceManager();
 
-	DISALLOW_COPY_AND_ASSIGN(AudioDeviceManager);
-	FRIEND_CLASS_REFCOUNTEDOBJECT(AudioDeviceManager);
+protected:
+	virtual ~AudioDeviceManager();
 
 public:
 
@@ -63,8 +78,14 @@ public:
 	ray_refptr<IAudioDeviceCollection> getSpeakerCollection() override;
 
 private:
+	std::mutex observers_mutex_;
 
+	std::list<IAudioDeviceObserver*> observers_;
+
+private:
+	DISALLOW_COPY_AND_ASSIGN(AudioDeviceManager);
+	FRIEND_CLASS_REFCOUNTEDOBJECT(AudioDeviceManager);
 };
 
-}
-}
+} // devices
+} // ray

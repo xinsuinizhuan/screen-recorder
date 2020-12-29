@@ -1,27 +1,9 @@
 #include "ray_audio_device.h"
 
+#include <algorithm>
+
 namespace ray {
 namespace devices {
-
-AudioDeviceCollection::AudioDeviceCollection()
-{
-}
-
-AudioDeviceCollection::~AudioDeviceCollection()
-{
-}
-
-int AudioDeviceCollection::getDeviceCount()
-{
-	return 0;
-}
-
-AudioDeviceInfo AudioDeviceCollection::getDeviceInfo(int index)
-{
-	return AudioDeviceInfo();
-}
-
-
 
 AudioDeviceManager::AudioDeviceManager()
 {
@@ -33,52 +15,30 @@ AudioDeviceManager::~AudioDeviceManager()
 
 void AudioDeviceManager::registerObserver(IAudioDeviceObserver * observer)
 {
+	std::lock_guard<std::mutex> lock(observers_mutex_);
+
+	auto itr = std::find_if(observers_.begin(), observers_.end(), 
+		[observer](const IAudioDeviceObserver* old) { return observer == old; }
+	);
+
+	if (itr == observers_.end())
+		observers_.emplace_back(observer);
 }
 
 void AudioDeviceManager::unregisterObserver(const IAudioDeviceObserver * observer)
 {
+	std::lock_guard<std::mutex> lock(observers_mutex_);
+
+	auto itr = std::find_if(observers_.begin(), observers_.end(),
+		[observer](const IAudioDeviceObserver* old) { return observer == old; }
+	);
+
+	if (itr == observers_.end())
+		return;
+
+	observers_.erase(itr);
 }
 
-int AudioDeviceManager::setMicrophone(const char id[kAdmDeviceIdSize])
-{
-	return 0;
-}
-
-int AudioDeviceManager::setMicrophoneVolume(const unsigned int volume)
-{
-	return 0;
-}
-
-int AudioDeviceManager::getMicrophoneVolume(unsigned int & volume)
-{
-	return 0;
-}
-
-ray_refptr<IAudioDeviceCollection> AudioDeviceManager::getMicrophoneCollection()
-{
-	return nullptr;
-}
-
-int AudioDeviceManager::setSpeaker(const char id[kAdmDeviceIdSize])
-{
-	return 0;
-}
-
-int AudioDeviceManager::setSpeakerVolume(const unsigned int volume)
-{
-	return 0;
-}
-
-int AudioDeviceManager::getSpeakerVolume(unsigned int & volume)
-{
-	return 0;
-}
-
-ray_refptr<IAudioDeviceCollection> AudioDeviceManager::getSpeakerCollection()
-{
-	return nullptr;
-}
-
-}
-}
+} // devices
+} // ray
 

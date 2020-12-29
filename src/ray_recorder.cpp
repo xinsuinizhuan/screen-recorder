@@ -78,5 +78,5 @@ ray_refptr<IAudioDeviceManager> Recorder::getAudioDeviceManager()
 	return audio_device_mgr_;
 }
 
-}
-}
+} // recorder
+} // ray
