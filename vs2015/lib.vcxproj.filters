@@ -243,6 +243,9 @@
     <ClInclude Include="..\include\ray_refptr_object.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\utils\win\ray_com.h">
+      <Filter>utils\win</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\old\d3d_helper.cpp">
@@ -349,6 +352,11 @@
     <ClCompile Include="..\src\utils\ray_log.cpp">
       <Filter>utils</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\devices\ray_audio_device.cpp" />
+    <ClCompile Include="..\src\devices\ray_audio_device.cpp">
+      <Filter>devices</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\devices\ray_audio_device_win.cpp">
+      <Filter>devices</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

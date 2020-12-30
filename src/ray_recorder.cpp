@@ -43,7 +43,7 @@ rt_error Recorder::queryInterface(const RECORDER_INTERFACE_IID& iid, void **pp) 
 
 	do {
 		if (!pp) {
-			ret = ERROR_INVALID_PARAMETER;
+			ret = ERR_INVALID_CONTEXT;
 			break;
 		}
 

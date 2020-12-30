@@ -6,8 +6,11 @@
 
 namespace am {
 	typedef struct {
+
 		std::string id;
+
 		std::string name;
+
 		uint8_t is_default;
 	}DEVICE_AUDIOS;
 

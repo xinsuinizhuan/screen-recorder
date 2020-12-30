@@ -35,7 +35,7 @@
 
 namespace ray {
 
-typedef uint32_t	rt_error;
+
 typedef uint64_t	rt_uid;
 
 typedef enum ErrorCode {
@@ -144,6 +144,8 @@ typedef enum ErrorCode {
 
 	ERR_MAX
 }ErrorCode;
+
+typedef ErrorCode rt_error;
 
 typedef enum ErrorReason {
 	REASON_NONE = 0

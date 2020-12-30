@@ -152,8 +152,6 @@ public:
 	* @return ray_refptr<IAudioDeviceCollection>
 	*/
 	virtual ray_refptr<IAudioDeviceCollection> getSpeakerCollection() = 0;
-
-	
 };
 
 } // namespace recorder

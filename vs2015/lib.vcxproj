@@ -248,9 +248,11 @@ copy /Y $(TargetDir)$(TargetName).lib $(SolutionDir)..\2node\platform\win32\
     <ClInclude Include="..\src\ray_remuxer.h" />
     <ClInclude Include="..\src\utils\ray_log.h" />
     <ClInclude Include="..\src\utils\ray_string.h" />
+    <ClInclude Include="..\src\utils\win\ray_com.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\devices\ray_audio_device.cpp" />
+    <ClCompile Include="..\src\devices\ray_audio_device_win.cpp" />
     <ClCompile Include="..\src\ray_dllmain.cpp" />
     <ClCompile Include="..\src\ray_dump.cpp" />
     <ClCompile Include="..\src\ray_recorder.cpp" />

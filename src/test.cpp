@@ -145,6 +145,9 @@ int main() {
 
 		ray_refptr<IAudioDeviceManager> audio_device_mgr = recorder->getAudioDeviceManager();
 
+		ray_refptr<IAudioDeviceCollection> iaudio_device_collection = audio_device_mgr->getMicrophoneCollection();
+
+		ray_refptr<IAudioDeviceCollection> oaudio_device_collection = audio_device_mgr->getSpeakerCollection();
 	};
 
 	test();

@@ -78,6 +78,13 @@ public:
 	ray_refptr<IAudioDeviceCollection> getSpeakerCollection() override;
 
 private:
+#if defined(WIN32)
+
+	int getAudioDevices(bool capture, std::list<AudioDeviceInfo>& devices);
+
+#endif
+
+private:
 	std::mutex observers_mutex_;
 
 	std::list<IAudioDeviceObserver*> observers_;
