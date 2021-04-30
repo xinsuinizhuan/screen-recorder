@@ -100,7 +100,7 @@ namespace am {
 			return AE_NEED_INIT;
 		}
 
-		_base_time = -1;
+		_base_time = av_gettime_relative();
 
 		if (_v_stream && _v_stream->v_enc)
 			_v_stream->v_enc->start();
@@ -825,23 +825,24 @@ namespace am {
 
 		packet->stream_index = _v_stream->st->index;
 
-		av_packet_rescale_ts(packet, _v_stream->v_src->get_time_base(), { 1,AV_TIME_BASE });
-
 		/*packet->pts = av_rescale_q_rnd(packet->pts, 
 			_v_stream->v_src->get_time_base(), 
 			{ 1,AV_TIME_BASE }, 
-			(AVRounding)(AV_ROUND_NEAR_INF | AV_ROUND_PASS_MINMAX));*/
+			(AVRounding)(AV_ROUND_NEAR_INF | AV_ROUND_PASS_MINMAX));
 
 		// make audio and video use one clock
 		if (_v_stream->pre_pts == (uint64_t)-1) {
 			_v_stream->pre_pts = packet->pts;
-		}
+		}*/
 
-		//make pts start from zero,otherwise the total play time of target file is incorrect
-		packet->pts = packet->pts - _v_stream->pre_pts;
+		// scale ts with timebase of base_time
+		av_packet_rescale_ts(packet, _v_stream->v_src->get_time_base(), { 1,AV_TIME_BASE });
+
+		// make audio and video use one clock
+		packet->pts = packet->pts - _base_time;
 		packet->dts = packet->pts;//make sure that dts is equal to pts
 
-		av_packet_rescale_ts(packet, { 1,AV_TIME_BASE }, _a_stream->st->time_base);
+		av_packet_rescale_ts(packet, { 1,AV_TIME_BASE }, _v_stream->st->time_base);
 
 
 		al_debug("V:%lld", packet->pts);
@@ -872,20 +873,21 @@ namespace am {
 			src_timebase = _a_stream->a_filter_aresample[0]->get_time_base();
 		}
 
-		av_packet_rescale_ts(packet, src_timebase, { 1,AV_TIME_BASE });
-
 		/*packet->pts = av_rescale_q_rnd(packet->pts, 
 			src_timebase, 
 			{ 1,AV_TIME_BASE }, 
-			(AVRounding)(AV_ROUND_NEAR_INF | AV_ROUND_PASS_MINMAX));*/
+			(AVRounding)(AV_ROUND_NEAR_INF | AV_ROUND_PASS_MINMAX));
 
-		// make audio and video use one clock
+		
 		if (_v_stream->pre_pts == (uint64_t)-1) {
 			_v_stream->pre_pts = packet->pts;
-		}
+		}*/
 
-		//make pts start from zero,otherwise the total play time of target file is incorrect
-		packet->pts = packet->pts - _v_stream->pre_pts;
+		// scale ts with timebase of base_time
+		av_packet_rescale_ts(packet, src_timebase, { 1,AV_TIME_BASE });
+
+		// make audio and video use one clock
+		packet->pts = packet->pts - _base_time;
 		packet->dts = packet->pts;//make sure that dts is equal to pts
 
 		av_packet_rescale_ts(packet, { 1,AV_TIME_BASE }, _a_stream->st->time_base);
