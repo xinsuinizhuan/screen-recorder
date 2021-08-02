@@ -298,6 +298,7 @@ echo f| xcopy /r /y $(TargetDir)$(TargetName).lib $(SolutionDir)2node\platform\w
     <ClInclude Include="device_audios.h" />
     <ClInclude Include="export.h" />
     <ClInclude Include="record_desktop_gdi.h" />
+    <ClInclude Include="record_desktop_wgc.h" />
     <ClInclude Include="remuxer_ffmpeg.h" />
     <ClInclude Include="resample_pcm.h" />
     <ClInclude Include="ring_buffer.h" />
@@ -338,6 +339,7 @@ echo f| xcopy /r /y $(TargetDir)$(TargetName).lib $(SolutionDir)2node\platform\w
     <ClCompile Include="device_audios.cpp" />
     <ClCompile Include="export.cpp" />
     <ClCompile Include="record_desktop_gdi.cpp" />
+    <ClCompile Include="record_desktop_wgc.cpp" />
     <ClCompile Include="remuxer_ffmpeg.cpp" />
     <ClCompile Include="resample_pcm.cpp" />
     <ClCompile Include="sws_helper.cpp" />

@@ -24,6 +24,8 @@ namespace am {
 
 		static bool is_win8_or_above();
 
+		static bool is_win10_or_above(const int build = 0);
+
 		static bool is_32();
 
 	private:
