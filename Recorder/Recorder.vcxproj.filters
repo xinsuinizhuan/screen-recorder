@@ -210,6 +210,12 @@
     <ClInclude Include="record_desktop_wgc.h">
       <Filter>Header Files\record</Filter>
     </ClInclude>
+    <ClInclude Include="enumer_window.h">
+      <Filter>Header Files\helpers\win</Filter>
+    </ClInclude>
+    <ClInclude Include="enumer_monitor.h">
+      <Filter>Header Files\helpers\win</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -325,6 +331,12 @@
     </ClCompile>
     <ClCompile Include="record_desktop_wgc.cpp">
       <Filter>Source Files\record</Filter>
+    </ClCompile>
+    <ClCompile Include="enumer_window.cpp">
+      <Filter>Source Files\helpers\win</Filter>
+    </ClCompile>
+    <ClCompile Include="enumer_monitor.cpp">
+      <Filter>Source Files\helpers\win</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

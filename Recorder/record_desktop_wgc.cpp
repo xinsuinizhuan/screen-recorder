@@ -1,7 +1,5 @@
 #include "record_desktop_wgc.h"
 
-
-
 #include "system_lib.h"
 #include "utils_string.h"
 #include "system_error.h"
@@ -47,6 +45,20 @@ int record_desktop_wgc::stop()
 
 void record_desktop_wgc::clean_up()
 {
+}
+
+bool record_desktop_wgc::is_cursor_support()
+{
+  try {
+    return winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(
+      L"Windows.Graphics.Capture.GraphicsCaptureSession", L"IsCursorCaptureEnabled");
+  }
+  catch (const winrt::hresult_error&) {
+    return false;
+  }
+  catch (...) {
+    return false;
+  }
 }
 
 }

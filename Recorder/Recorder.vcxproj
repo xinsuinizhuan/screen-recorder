@@ -139,7 +139,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)ffmpeg\lib\;$(SolutionDir)libmp4v2\lib\;$(SolutionDir)portaudio\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>avformat.lib;avutil.lib;avdevice.lib;avcodec.lib;swscale.lib;swresample.lib;postproc.lib;avfilter.lib;Advapi32.lib;Ole32.lib;portaudio_x86.lib;user32.lib;gdi32.lib;dbghelp.lib</AdditionalDependencies>
+      <AdditionalDependencies>avformat.lib;avutil.lib;avdevice.lib;avcodec.lib;swscale.lib;swresample.lib;postproc.lib;avfilter.lib;Advapi32.lib;Ole32.lib;portaudio_x86.lib;user32.lib;gdi32.lib;dbghelp.lib;windowsapp.lib;dwmapi.lib</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /r /y $(SolutionDir)ffmpeg\bin $(TargetDir)
@@ -180,7 +180,7 @@ xcopy /r /y $(SolutionDir)portaudio\bin $(TargetDir)</Command>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)ffmpeg\lib\;$(SolutionDir)libmp4v2\lib\;$(SolutionDir)portaudio\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>avformat.lib;avutil.lib;avdevice.lib;avcodec.lib;swscale.lib;swresample.lib;postproc.lib;avfilter.lib;Advapi32.lib;Ole32.lib;portaudio_x86.lib;user32.lib;gdi32.lib;dbghelp.lib</AdditionalDependencies>
+      <AdditionalDependencies>avformat.lib;avutil.lib;avdevice.lib;avcodec.lib;swscale.lib;swresample.lib;postproc.lib;avfilter.lib;Advapi32.lib;Ole32.lib;portaudio_x86.lib;user32.lib;gdi32.lib;dbghelp.lib;windowsapp.lib;dwmapi.lib</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /r /y $(SolutionDir)ffmpeg\bin $(TargetDir)
@@ -203,7 +203,7 @@ xcopy /r /y $(SolutionDir)portaudio\bin $(TargetDir)</Command>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)ffmpeg\lib\;$(SolutionDir)libmp4v2\lib\;$(SolutionDir)portaudio\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>avformat.lib;avutil.lib;avdevice.lib;avcodec.lib;swscale.lib;swresample.lib;postproc.lib;avfilter.lib;Advapi32.lib;Ole32.lib;portaudio_x86.lib;user32.lib;gdi32.lib;dbghelp.lib</AdditionalDependencies>
+      <AdditionalDependencies>avformat.lib;avutil.lib;avdevice.lib;avcodec.lib;swscale.lib;swresample.lib;postproc.lib;avfilter.lib;Advapi32.lib;Ole32.lib;portaudio_x86.lib;user32.lib;gdi32.lib;dbghelp.lib;windowsapp.lib;dwmapi.lib</AdditionalDependencies>
       <AdditionalOptions>/SAFESEH:NO %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
@@ -253,7 +253,7 @@ xcopy /r /y $(SolutionDir)portaudio\bin $(TargetDir)</Command>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)ffmpeg\lib\;$(SolutionDir)libmp4v2\lib\;$(SolutionDir)portaudio\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>avformat.lib;avutil.lib;avdevice.lib;avcodec.lib;swscale.lib;swresample.lib;postproc.lib;avfilter.lib;Advapi32.lib;Ole32.lib;portaudio_x86.lib;user32.lib;gdi32.lib;dbghelp.lib</AdditionalDependencies>
+      <AdditionalDependencies>avformat.lib;avutil.lib;avdevice.lib;avcodec.lib;swscale.lib;swresample.lib;postproc.lib;avfilter.lib;Advapi32.lib;Ole32.lib;portaudio_x86.lib;user32.lib;gdi32.lib;dbghelp.lib;windowsapp.lib;dwmapi.lib</AdditionalDependencies>
       <AdditionalOptions>/SAFESEH:NO %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
@@ -273,6 +273,8 @@ echo f| xcopy /r /y $(TargetDir)$(TargetName).lib $(SolutionDir)2node\platform\w
     <ClInclude Include="encoder_video.h" />
     <ClInclude Include="encoder_video_define.h" />
     <ClInclude Include="encoder_video_factory.h" />
+    <ClInclude Include="enumer_monitor.h" />
+    <ClInclude Include="enumer_window.h" />
     <ClInclude Include="error_define.h" />
     <ClInclude Include="filter.h" />
     <ClInclude Include="filter_aresample.h" />
@@ -319,6 +321,8 @@ echo f| xcopy /r /y $(TargetDir)$(TargetName).lib $(SolutionDir)2node\platform\w
     <ClCompile Include="encoder_video_nvenc.cpp" />
     <ClCompile Include="encoder_video.cpp" />
     <ClCompile Include="encoder_video_factory.cpp" />
+    <ClCompile Include="enumer_monitor.cpp" />
+    <ClCompile Include="enumer_window.cpp" />
     <ClCompile Include="filter.cpp" />
     <ClCompile Include="filter_aresample.cpp" />
     <ClCompile Include="filter_amix.cpp" />

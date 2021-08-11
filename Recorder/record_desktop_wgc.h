@@ -35,6 +35,9 @@ public:
 
 protected:
 	virtual void clean_up();
+
+private:
+	bool is_cursor_support();
 };
 
 }
